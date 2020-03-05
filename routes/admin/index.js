@@ -35,4 +35,12 @@ router.post('/', function(request, response) {
     }   
 });
 
+router.get('/register', function(request, response) {
+	response.sendFile(appRoot + '/admin-register.html', function (err) {
+		if (err) {
+			response.status(err.status).end();
+		}
+	});
+});
+
 module.exports = router;
