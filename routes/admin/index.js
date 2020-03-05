@@ -19,8 +19,8 @@ router.post('/', function(request, response) {
     var email = request.body.email;
     var password = request.body.password;
     if (email && password) {
-        connection.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, password], function(error, results, fields) {
-            if (results.length && results.length > 0) {
+        connection.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, password], function(error, result, fields) {
+            if (result.length && result.length > 0) {
                 request.session.loggedin = true;
                 request.session.email = email;
                 response.redirect('/admin');
@@ -40,6 +40,21 @@ router.get('/register', function(request, response) {
 		if (err) {
 			response.status(err.status).end();
 		}
+	});
+});
+
+router.post('/register', function(request, response) {
+	var first_name = request.body.fname;
+	var last_name = request.body.lname;
+	var email = request.body.email;
+	var password = request.body.password;
+
+	connection.query('INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)', [first_name, last_name, email, password], function(error, result, fields) {
+		if (error) {
+			response.send('Unable to add user to database');
+		}
+
+		response.redirect('/admin');
 	});
 });
 
