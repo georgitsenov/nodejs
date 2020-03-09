@@ -6,7 +6,7 @@ var rateLimit = require("express-rate-limit");
 var app = express();
 
 var adminLimiter = rateLimit({
-	max: 5,
+	max: 10,
 	windowMs: 60000,
 	message: 'Too many requests, please try again later.',
 	statusCode: 429,

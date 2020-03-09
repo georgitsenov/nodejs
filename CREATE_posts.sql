@@ -1,6 +1,6 @@
 CREATE TABLE `posts` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
   `view_count` int(10) unsigned NOT NULL DEFAULT '0',

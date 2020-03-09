@@ -2,10 +2,15 @@ var router = require('express').Router();
 var appRoot = require('app-root-path');
 var connection = require(appRoot + '/db');
 
+var posts = require('./posts');
+
 router.get('/', function(request, response) {
     if (request.session.loggedin) {
-        response.send('Welcome back, ' + request.session.email + '!');
-		response.end();
+    	response.sendFile(appRoot + '/admin-home.html', function(err) {
+            if (err) {
+                response.status(err.status).end();
+            }
+        }); 
     } else {
         response.sendFile(appRoot + '/admin.html', function(err) {
 			if (err) {
@@ -57,5 +62,7 @@ router.post('/register', function(request, response) {
 		response.redirect('/admin');
 	});
 });
+
+router.use('/posts', posts);
 
 module.exports = router;
