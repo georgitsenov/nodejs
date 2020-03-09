@@ -1,6 +1,5 @@
 var express = require('express');
 var session = require('express-session');
-var mysql = require('mysql');
 var path = require('path');
 var rateLimit = require("express-rate-limit");
 
