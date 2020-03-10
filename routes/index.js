@@ -1,7 +1,7 @@
 var router = require('express').Router();
 
 router.get('/', function(request, response) {
-    response.send("POSTS");
+    response.render('index');
 });
 
 module.exports = router;

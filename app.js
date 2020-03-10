@@ -14,6 +14,9 @@ var adminLimiter = rateLimit({
 
 });
 
+app.set('views', './views').set('view engine', 'pug');
+app.use(express.static('public'));
+
 app.use(session({
 	secret: ';=fjGnwsV`2+#=9Y',
 	resave: true,
