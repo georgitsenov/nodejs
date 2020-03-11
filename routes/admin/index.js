@@ -28,7 +28,7 @@ router.post('/', function(request, response) {
             if (result.length && result.length > 0) {
                 request.session.loggedin = true;
                 request.session.email = email;
-                response.redirect('admin');
+                response.redirect('back');
             } else {
                 response.send('Incorrect Username and/or Password!');
             }               
