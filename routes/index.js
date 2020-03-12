@@ -9,7 +9,8 @@ router.get('/', function(request, response) {
 
     connection.query(query, function(error, result, fields) {
 		dataObject = Object.assign({}, result);
-        response.render('index', dataObject);
+		console.log(dataObject);
+        response.render('index', {dataObject: dataObject});
     });
 });
 
