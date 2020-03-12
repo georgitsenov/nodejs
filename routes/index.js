@@ -4,8 +4,12 @@ var appRoot = require('app-root-path');
 var connection = require(appRoot + '/db');
 
 router.get('/', function(request, response) {
-    connection.query('SELECT * FROM posts', function(error, result, fields) {
-        response.render('index', result);
+	var query = 'SELECT posts.created_at, title, content, first_name, last_name FROM ' +
+				'posts LEFT JOIN users on posts.user_id=users.id;';
+
+    connection.query(query, function(error, result, fields) {
+		dataObject = Object.assign({}, result);
+        response.render('index', dataObject);
     });
 });
 

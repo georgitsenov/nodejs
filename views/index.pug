@@ -50,23 +50,23 @@ head
           .col-md-12.blog-holder
             .row
               // Blog Item
-              .col-md-4.blog-item-wrapper
-                .blog-item
-                  .blog-img
-                    a(href='#')
-                      img(src='img/blog-2.jpg' alt='')
-                  .blog-text
-                    .blog-title
+              each post in dataObject
+                .col-md-4.blog-item-wrapper
+                  .blog-item
+                    .blog-img
                       a(href='#')
-                        h4 Amazing Blog Title
-                    .blog-meta
-                      p.blog-date 30 May 2016
-                    .blog-desc
-                      p
-                        | Lorem ipsum dolor sit amet con sectetur adipiscing elit sed do eiu smod tempor incididunt ut labore et dolore magna aliqua.
-                    .blog-author
-                      p by John Doe
-              // End of Blog Item
+                        img(src='img/blog-2.jpg' alt='')
+                    .blog-text
+                      .blog-title
+                        a(href='#')
+                          h4= post.title
+                      .blog-meta
+                        p.blog-date= post.created_at
+                      .blog-desc
+                        p= post.content
+                      .blog-author
+                        p by #{post.first_name + " " + post.last_name}
+                // End of Blog Item
   // End of Blog Section
   footer.mastfoot.mb-3.bg-white.py-4.border-top
     .inner.container
