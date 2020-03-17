@@ -3,7 +3,8 @@ require('dotenv').config()
 const { Sequelize, DataTypes, Model } = require('sequelize');
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
   host: process.env.DB_HOST,
-  dialect: 'mysql'
+  dialect: 'mysql',
+  logging: false
 });
 
 class User extends Model {}
@@ -46,7 +47,12 @@ User.init({
   modelName: 'user'
 });
 
-const users = await User.findAll();
-console.log(users.every(user => user instanceof User)); // true
-console.log("All users:", JSON.stringify(users, null, 2));
-
+User.findAll().then( (users) => { 
+  users.forEach((user) => {
+    console.log(user.get());
+  })
+    
+  sequelize.close();
+}, () => { 
+  console.log("It does not work");
+});
