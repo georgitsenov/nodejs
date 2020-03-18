@@ -4,6 +4,8 @@ var path = require('path');
 var rateLimit = require("express-rate-limit");
 
 var app = express();
+app.use(express.urlencoded({extended: true}));
+app.use(express.json())
 
 var adminLimiter = rateLimit({
 	max: 0,
@@ -24,7 +26,7 @@ app.use(session({
 }));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.use('/admin', adminLimiter)
+app.use('/admin', adminLimiter);
 
 app.use('/', require('./routes'));
 app.use('/admin', require('./routes/admin'));
