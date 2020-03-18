@@ -8,23 +8,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       title: {
         type: Sequelize.STRING
       },
       content: {
         type: Sequelize.TEXT
       },
-      view_count: {
+      viewCount: {
         type: Sequelize.INTEGER
       },
-      user_id: {
+      userId: {
         type: Sequelize.INTEGER
       },
       active: {
-        type: Sequelize.ENUM
+        type: Sequelize.ENUM('active', 'inactive')
       },
       createdAt: {
         allowNull: false,

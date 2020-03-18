@@ -8,9 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       firstName: {
         type: Sequelize.STRING
       },
@@ -24,10 +21,10 @@ module.exports = {
         type: Sequelize.CHAR
       },
       role: {
-        type: Sequelize.ENUM
+        type: Sequelize.ENUM('administrator', 'contributor')
       },
       active: {
-        type: Sequelize.ENUM
+        type: Sequelize.ENUM('active', 'inactive')
       },
       createdAt: {
         allowNull: false,

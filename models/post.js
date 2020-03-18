@@ -1,12 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const post = sequelize.define('post', {
-    id: DataTypes.INTEGER,
     title: DataTypes.STRING,
     content: DataTypes.TEXT,
-    view_count: DataTypes.INTEGER,
-    user_id: DataTypes.INTEGER,
-    active: DataTypes.ENUM
+    viewCount: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER,
+    active: DataTypes.ENUM('active', 'inactive')
   }, {});
   post.associate = function(models) {
     // associations can be defined here
