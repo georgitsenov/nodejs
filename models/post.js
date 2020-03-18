@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     content: DataTypes.TEXT,
     viewCount: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
-    active: DataTypes.ENUM('active', 'inactive')
+    active: DataTypes.ENUM
   }, {});
   post.associate = function(models) {
     // associations can be defined here
