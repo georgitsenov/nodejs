@@ -21,7 +21,7 @@
     "express": "^4.17.1",
     "express-rate-limit": "^5.1.1",
     "express-session": "^1.17.0",
-    "mongodb": "^3.5.5",
+    "mongoose": "^5.9.5",
     "mysql2": "^2.1.0",
     "path": "^0.12.7",
     "pug": "^2.0.4"

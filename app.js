@@ -4,11 +4,9 @@ var path = require('path');
 var rateLimit = require("express-rate-limit");
 
 var app = express();
-app.use(express.urlencoded({extended: true}));
-app.use(express.json())
 
 var adminLimiter = rateLimit({
-	max: 0,
+	max: 10,
 	windowMs: 60000,
 	message: 'Too many requests, please try again later.',
 	statusCode: 429,
@@ -19,13 +17,15 @@ var adminLimiter = rateLimit({
 app.set('views', './views').set('view engine', 'pug');
 app.use(express.static('public'));
 
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
 app.use(session({
 	secret: ';=fjGnwsV`2+#=9Y',
 	resave: true,
 	saveUninitialized: true
 }));
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
+
 app.use('/admin', adminLimiter);
 
 app.use('/', require('./routes'));
