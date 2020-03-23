@@ -1,9 +1,4 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/blogdbNodejs', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
-});
 
 var Schema = mongoose.Schema;
 

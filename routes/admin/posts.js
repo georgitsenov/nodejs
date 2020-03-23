@@ -1,13 +1,12 @@
 const posts = require('express').Router();
-var appRoot = require('app-root-path');
-var connection = require(appRoot + '/db');
+const appRoot = require('app-root-path');
+const Post = require(appRoot + '/models/post');
 
 posts.get('/', function(request, response){
-	if (request.session.loggedin) {
-	    connection.query('SELECT * FROM posts', function(error, result, fields) {
-			response.send(result);
-	        //sponse.json(result);
-	    });	
+	if (request.session.loggedIn) {
+		Post.find()
+			.then( (result) => {response.send(result)})
+			.catch((err) => response.send(err));
 	} else {
 		response.status(401).end();
 	}

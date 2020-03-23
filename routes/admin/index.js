@@ -31,6 +31,7 @@ router.get('/', function(request, response) {
     }   
 });
 
+
 router.post('/', function(request, response) {
     var email = request.body.email;
     var password = request.body.password;
@@ -52,6 +53,7 @@ router.post('/', function(request, response) {
 
 });
 
+
 router.get('/register', function(request, response) {
 	response.sendFile(appRoot + '/admin-register.html', function (err) {
 		if (err) {
@@ -59,6 +61,7 @@ router.get('/register', function(request, response) {
 		}
 	});
 });
+
 
 router.post('/register', function(request, response, next) {
 	var first_name = request.body.fname;
@@ -81,6 +84,8 @@ router.post('/register', function(request, response, next) {
         }});
 });
 
+
 router.use('/posts', posts);
+
 
 module.exports = router;
