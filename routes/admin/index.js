@@ -1,6 +1,6 @@
 var router = require('express').Router();
 var appRoot = require('app-root-path');
-var connection = require(appRoot + '/db');
+var User = require(appRoot + '/models/user');
 
 var posts = require('./posts');
 
@@ -14,20 +14,9 @@ function validatePassword(password) {
 	}
 }
 
-function checkEmailExistense(email) {
-	var query = 'SELECT * FROM users WHERE email = ?';
-
-	connection.query(query, [email], function (error, result, fields) {
-		if (result.length && result.length > 0) {
-			return true;
-		} else {
-			return false;
-		}
-	});
-}
 
 router.get('/', function(request, response) {
-    if (request.session.loggedin) {
+    if (request.session.loggedIn) {
     	response.sendFile(appRoot + '/admin-home.html', function(err) {
             if (err) {
                 response.status(err.status).end();
@@ -47,20 +36,20 @@ router.post('/', function(request, response) {
     var password = request.body.password;
 
     if (email && password) {
-        connection.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, password], function(error, result, fields) {
-            if (result.length && result.length > 0) {
-                request.session.loggedin = true;
+        User.findOne({email: email, password: password})
+            .then( () => {
+                request.session.loggedIn = true;
                 request.session.email = email;
                 response.redirect('back');
-            } else {
+            })
+            .catch((error) => {
                 response.send('Incorrect Username and/or Password!');
-            }               
-            response.end();
-        }); 
+            })
     } else {
         response.send('Please enter Username and Password!');
         response.end();
-    }   
+    }
+
 });
 
 router.get('/register', function(request, response) {
@@ -77,25 +66,19 @@ router.post('/register', function(request, response, next) {
 	var email = request.body.email;
 	var password = request.body.password;
 
-	if (!checkEmailExistense(email)) {
-		response.send('Email account already registered!');
-		response.end();
-		return next();
-	}
-
     if (!validatePassword(password)) {
         response.send('Password too weak!');
 		response.end();
 		return next();
     }
 
-	connection.query('INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)', [first_name, last_name, email, password], function(error, result, fields) {
+	User.create({ firstName: first_name, lastName: last_name, email: email, password: password})
+	.then( () => {
+		response.redirect('/admin')})
+	.catch( (error) => {
 		if (error) {
-			response.send('Unable to add user to database');
-		}
-
-		response.redirect('/admin');
-	});
+			response.send('Unable to add user to database')
+        }});
 });
 
 router.use('/posts', posts);
