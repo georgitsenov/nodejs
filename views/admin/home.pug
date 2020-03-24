@@ -1,0 +1,18 @@
+doctype html
+head
+  meta(charset='utf-8')
+  title Admin Panel
+  link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css' integrity='sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu' crossorigin='anonymous')
+form
+  .form-group
+    label(for='exampleInputEmail1') Email address
+    input#exampleInputEmail1.form-control(type='email' aria-describedby='emailHelp' placeholder='Enter email')
+    small#emailHelp.form-text.text-muted We&apos;ll never share your email with anyone else.
+  .form-group
+    label(for='exampleInputPassword1') Password
+    input#exampleInputPassword1.form-control(type='password' placeholder='Password')
+  .form-check
+    input#exampleCheck1.form-check-input(type='checkbox')
+    label.form-check-label(for='exampleCheck1') Check me out
+  button.btn.btn-primary(type='submit') Submit
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js' integrity='sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd' crossorigin='anonymous')

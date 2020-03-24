@@ -1,7 +1,7 @@
 var router = require('express').Router();
 
 var appRoot = require('app-root-path');
-var connection = require(appRoot + '/db');
+//var connection = require(appRoot + '/db');
 
 router.get('/', function(request, response) {
 	var query = 'SELECT posts.created_at, title, content, first_name, last_name FROM ' +

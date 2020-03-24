@@ -17,17 +17,9 @@ function validatePassword(password) {
 
 router.get('/', function(request, response) {
     if (request.session.loggedIn) {
-    	response.sendFile(appRoot + '/admin-home.html', function(err) {
-            if (err) {
-                response.status(err.status).end();
-            }
-        }); 
+    	response.render('admin/home');
     } else {
-        response.sendFile(appRoot + '/admin.html', function(err) {
-			if (err) {
-				response.status(err.status).end();
-			}
-		});
+        response.render('admin/index');
     }   
 });
 
@@ -55,11 +47,7 @@ router.post('/', function(request, response) {
 
 
 router.get('/register', function(request, response) {
-	response.sendFile(appRoot + '/admin-register.html', function (err) {
-		if (err) {
-			response.status(err.status).end();
-		}
-	});
+	response.render('admin/register');
 });
 
 
