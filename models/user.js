@@ -11,6 +11,6 @@ var UserSchema = Schema({
     active: { type: Boolean, default: 0 }
 }, { timestamps: true });
 
-UserSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
+UserSchema.plugin(passportLocalMongoose, { usernameField: 'email'});
 
 module.exports = mongoose.model('User', UserSchema);

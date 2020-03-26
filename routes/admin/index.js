@@ -66,6 +66,12 @@ router.post('/register', function(request, response, next) {
 });
 
 
+router.get('/logout', function(request, response) {
+    request.logout();
+    response.redirect('/admin');
+});
+
+
 router.use('/posts', posts);
 
 
