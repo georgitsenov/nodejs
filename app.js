@@ -3,9 +3,13 @@ var express = require('express');
 var session = require('express-session');
 var rateLimit = require("express-rate-limit");
 var mongoose = require('mongoose');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 
 var app = express();
-mongoose.connect("mongodb://localhost:27017/nodejsBlogdb", { useNewUrlParser: true, useUnifiedTopology: true });
+
+mongoose.connect("mongodb://localhost:27017/nodejsBlogdb", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
 app.set('views', './views').set('view engine', 'pug');
 app.use(express.static('public'));
@@ -18,6 +22,8 @@ app.use(session({
 	resave: true,
 	saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 var adminLimiter = rateLimit({
     max: 10, 

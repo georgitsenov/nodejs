@@ -1,8 +1,14 @@
 var router = require('express').Router();
+var passport = require('passport');
 var appRoot = require('app-root-path');
 var User = require(appRoot + '/models/user');
 
 var posts = require('./posts');
+
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 
 function validatePassword(password) {
 	var paswd = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
@@ -16,7 +22,7 @@ function validatePassword(password) {
 
 
 router.get('/', function(request, response) {
-    if (request.session.loggedIn) {
+    if (request.user) {
     	response.render('admin/home');
     } else {
         response.render('admin/index');
@@ -24,25 +30,8 @@ router.get('/', function(request, response) {
 });
 
 
-router.post('/', function(request, response) {
-    var email = request.body.email;
-    var password = request.body.password;
-
-    if (email && password) {
-        User.findOne({email: email, password: password})
-            .then( () => {
-                request.session.loggedIn = true;
-                request.session.email = email;
-                response.redirect('back');
-            })
-            .catch((error) => {
-                response.send('Incorrect Username and/or Password!');
-            })
-    } else {
-        response.send('Please enter Username and Password!');
-        response.end();
-    }
-
+router.post('/', passport.authenticate('local', {failureRedirect: '/', failureFlash: true }), function(request, response) {
+    response.redirect('/admin');
 });
 
 
@@ -63,13 +52,17 @@ router.post('/register', function(request, response, next) {
 		return next();
     }
 
-	User.create({ firstName: first_name, lastName: last_name, email: email, password: password})
-	.then( () => {
-		response.redirect('/admin')})
-	.catch( (error) => {
-		if (error) {
-			response.send('Unable to add user to database')
-        }});
+    User.register(new User({ email: email, firstName: first_name, lastName: last_name }), password, function (err, account) {
+        if (err) {
+            //response.render('admin/register');
+            console.log('error while user register!', err);
+            return next(err);
+        }
+
+        passport.authenticate('local')(request, response, function () {
+            response.redirect('/admin');
+        });
+    });
 });
 
 

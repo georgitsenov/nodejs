@@ -12,4 +12,8 @@ posts.get('/', function(request, response){
 	}
 });
 
+posts.post('/', function(request, response){
+	// implement logic here
+});
+
 module.exports = posts;
