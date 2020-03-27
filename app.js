@@ -4,7 +4,7 @@ var session = require('express-session');
 var rateLimit = require("express-rate-limit");
 var mongoose = require('mongoose');
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+var flash = require('connect-flash');
 
 
 var app = express();
@@ -24,6 +24,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 var adminLimiter = rateLimit({
     max: 10, 

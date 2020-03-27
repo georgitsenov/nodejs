@@ -5,12 +5,11 @@ head
   link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css' integrity='sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu' crossorigin='anonymous')
 form
   .form-group
-    label(for='exampleInputEmail1') Email address
-    input#exampleInputEmail1.form-control(type='email' aria-describedby='emailHelp' placeholder='Enter email')
-    small#emailHelp.form-text.text-muted We&apos;ll never share your email with anyone else.
+    label(for='inputTitle') Post Title
+    input#inputTitle.form-control(type='text' placeholder='Enter Title')
   .form-group
-    label(for='exampleInputPassword1') Password
-    input#exampleInputPassword1.form-control(type='password' placeholder='Password')
+    label(for='inputContent') Content
+    textarea#inputContent.form-control(placeholder='Content' rows='16')
   button.btn.btn-primary(type='submit') Submit
   button.btn.btn-primary(type='button' onclick="location.href='/admin/logout'") Logout
 script(src='https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js' integrity='sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd' crossorigin='anonymous')

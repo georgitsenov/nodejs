@@ -1,11 +1,11 @@
 var router = require('express').Router();
 var passport = require('passport');
 var appRoot = require('app-root-path');
-var User = require(appRoot + '/models/user');
+var User = require(appRoot + '/models').User;
 
 var posts = require('./posts');
 
-passport.use(User.createStrategy());
+passport.use(User.createStrategy({ passReqToCallback: true }));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -25,12 +25,13 @@ router.get('/', function(request, response) {
     if (request.user) {
     	response.render('admin/home');
     } else {
-        response.render('admin/index');
+        var flashMessage = request.flash('error')[0];
+        response.render('admin/index', { dataObject: flashMessage });
     }   
 });
 
 
-router.post('/', passport.authenticate('local', {failureRedirect: '/', failureFlash: true }), function(request, response) {
+router.post('/', passport.authenticate('local', {failureRedirect: '/admin', failureFlash: true }), function(request, response) {
     response.redirect('/admin');
 });
 
