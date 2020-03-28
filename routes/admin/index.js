@@ -20,6 +20,11 @@ function validatePassword(password) {
 	}
 }
 
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) { return next(); }
+    res.redirect('/')
+}
+
 
 router.get('/', function(request, response) {
     if (request.user) {
@@ -73,7 +78,7 @@ router.get('/logout', function(request, response) {
 });
 
 
-router.use('/posts', posts);
+router.use('/posts', ensureAuthenticated, posts);
 
 
 module.exports = router;

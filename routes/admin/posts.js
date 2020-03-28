@@ -1,19 +1,22 @@
 const posts = require('express').Router();
 const appRoot = require('app-root-path');
-const Post = require(appRoot + '/models/post');
+var Post = require(appRoot + '/models').Post;
+var User = require(appRoot + '/models').User;
 
 posts.get('/', function(request, response){
-	if (request.session.loggedIn) {
-		Post.find()
-			.then( (result) => {response.send(result)})
-			.catch((err) => response.send(err));
-	} else {
-		response.status(401).end();
-	}
+	Post.find()
+		.then( (result) => {response.send(result)})
+		.catch((err) => response.send(err));
 });
 
 posts.post('/', function(request, response){
-	// implement logic here
+	var title = request.body.title;
+	var content = request.body.content;
+	var userId = request.user._id;
+
+	Post.create({title: title, content: content, authorId: userId})
+		.then( () => { response.redirect('back')})
+		.catch( (err) => { response.send(err)});
 });
 
 module.exports = posts;
