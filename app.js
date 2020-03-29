@@ -6,7 +6,6 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
 
-
 var app = express();
 
 mongoose.connect("mongodb://localhost:27017/nodejsBlogdb", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
@@ -35,7 +34,12 @@ var adminLimiter = rateLimit({
 
 });
 
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) { return next(); }
+    res.redirect('/');
+}
+
 app.use('/', require('./routes'));
-app.use('/admin', adminLimiter, require('./routes/admin'));
+app.use(['/admin', '/admin/*'], adminLimiter, ensureAuthenticated, require('./routes/admin'));
 
 app.listen(3000);

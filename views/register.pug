@@ -41,10 +41,12 @@ head
     }
 .register-form
   h1 Register Form
-  form(action='register' method='POST')
+  form(method='POST')
     input(type='text' name='fname' placeholder='First Name' required='')
     input(type='text' name='lname' placeholder='Last Name' required='')
     input(type='email' name='email' placeholder='Email' required='')
     input(type='password' name='password' placeholder='Password' required='')
     input(type='password' name='password-confirm' placeholder='Password Confirmation' required='')
+    if dataObject
+      p= dataObject
     input(type='submit' value='Register')
