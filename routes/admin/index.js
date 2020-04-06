@@ -1,27 +1,15 @@
 var router = require('express').Router();
 var appRoot = require('app-root-path');
 
-var posts = require('./posts');
+var adminController = require(appRoot + '/controllers/admin');
+var postRouter = require(appRoot + '/routes/admin/posts');
 
 
-function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    res.redirect('back');
-}
+router.get('/', adminController.index);
 
+router.get('/logout', adminController.logout);
 
-router.get('/', function(request, response) {
-    response.render('admin/home');
-});
-
-
-router.get('/logout', function(request, response) {
-    request.logout();
-    response.redirect('/login');
-});
-
-
-router.use('/posts', posts);
+router.use('/posts', postRouter);
 
 
 module.exports = router;
