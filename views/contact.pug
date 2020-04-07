@@ -2,7 +2,7 @@ doctype html
 head
   meta(charset='utf-8')
   meta(http-equiv='X-UA-Compatible' content='IE=edge')
-  title NodeJS + Express Blog Project
+  title Moon - Multipurpose Bootstrap 4 Template by GetTemplates.co
   meta(name='description' content='Core HTML Project')
   meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
   // External CSS
@@ -15,55 +15,67 @@ head
   // CSS
   link(rel='stylesheet' href='css/style.min.css')
   link(rel='stylesheet' href='https://cdn.linearicons.com/free/1.0.0/icon-font.min.css')
+  link(href='https://file.myfontastic.com/7vRKgqrN3iFEnLHuqYhYuL/icons.css' rel='stylesheet')
   // Modernizr JS for IE8 support of HTML5 elements and media queries
   script(src='https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js')
 .boxed-page
   nav#gtco-header-navbar.navbar.navbar-expand-lg.py-4
     .container
+      a.navbar-brand.d-flex.align-items-center(href='/')
+        span.lnr.lnr-moon
       button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbar-nav-header' aria-controls='navbar-nav-header' aria-expanded='false' aria-label='Toggle navigation')
         span.lnr.lnr-menu
       #navbar-nav-header.collapse.navbar-collapse
         ul.navbar-nav.ml-auto
           li.nav-item
-            a.nav-link(href='/') Home
-          li.nav-item
-            a.nav-link(href='/contact') Contact
-          li.nav-item
-            a.nav-link(href='/login') Log In
-  section#gtco-blog.bg-grey
+            a.nav-link(href='/') Back to Home
+  .jumbotron.d-flex.align-items-center(style='background-image: url(img/hero-2.jpg)')
+    .container.text-center
+      h1.display-2.mb-4 Contact Us!
+      p
+        | Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+        br
+        | Duis mollis, est non commodo luctus.
+  // Contact Form Section
+  section#gtco-contact-form.bg-white
     .container
       .section-content
-        .title-wrap.mb-5
-          h2.section-title
-            | Latest 
-            b posts
-          p.section-sub-title Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+        // Section Title
+        .title-wrap
+          h2.section-title Get In Touch
+          p.section-sub-title
+            | Praesent commodo cursus magna, vel scelerisque nisl consectetur et. 
+            br
+            |  pharetra augue. Donec id elit non mi.
+        // End of Section Title
         .row
-          // Blog
-          .col-md-12.blog-holder
-            .row
-              // Blog Item
-              each post in dataObject
-                .col-md-4.blog-item-wrapper
-                  .blog-item
-                    .blog-img
-                      a(href='#')
-                        img(src='img/blog-2.jpg' alt='')
-                    .blog-text
-                      .blog-title
-                        a(href='#')
-                          h4= post.title
-                      .blog-meta
-                        p.blog-date= post.created_at
-                      .blog-desc
-                        p= post.content
-                      .blog-author
-                        p by #{post.first_name + " " + post.last_name}
-  // End of Blog Section
+          // Contact Form Holder
+          .col-md-8.offset-md-2.contact-form-holder.mt-4
+            form(method='post' name='contact-us' action='')
+              .row
+                .col-md-6.form-input
+                  input#name.form-control(type='text' name='name' placeholder='Name')
+                .col-md-6.form-input
+                  input#email.form-control(type='text' name='email' placeholder='Email')
+                .col-md-12.form-input
+                  input#subject.form-control(type='text' name='subject' placeholder='Subject')
+                .col-md-12.form-textarea
+                  textarea#message.form-control(name='message' rows='6' placeholder='Your Message ...')
+                .col-md-12.form-btn.text-center
+                  button.btn.btn-block.btn-secondary.btn-red(type='submit' name='submit' onclick='return false;') Send Message
+            #form-message-warning
+            #form-message-success
+              | Your message was sent, thank you!
+          // End of Contact Form Holder
+  // End of Contact Form Section
   footer.mastfoot.mb-3.bg-white.py-4.border-top
     .inner.container
       .row
         .col-md-6.d-flex.align-items-center.justify-content-md-start.justify-content-center
+          p.mb-0
+            | &copy; 2019 Moon. All Right Reserved. Design by 
+            a(href='https://gettemplates.co' target='_blank') GetTemplates.co
+            | .
         .col-md-6
           nav.nav.nav-mastfoot.justify-content-md-end.justify-content-center
             a.nav-link(href='#')
@@ -90,4 +102,3 @@ script(src='vendor/waypoints/waypoint.min.js')
 script(src='vendor/countTo/jquery.countTo.js')
 // Main JS
 script(src='js/app.min.js ')
-

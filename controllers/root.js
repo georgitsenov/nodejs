@@ -18,6 +18,7 @@ function validatePassword(password) {
 	}
 }
 
+
 exports.index = function(request, response) {
     Post.find()
         .sort({'createdAt': 'desc'})
@@ -26,6 +27,7 @@ exports.index = function(request, response) {
         });
     
 };
+
 
 exports.getLogin = function(request, response) {
     if (request.user) {
@@ -36,13 +38,16 @@ exports.getLogin = function(request, response) {
     }   
 };
 
+
 exports.postLogin = function(request, response) {
     response.redirect('/admin');
 };
 
+
 exports.getRegister = function(request, response) {
     response.render('register');
 };
+
 
 exports.postRegister = function(request, response, next) {
     var first_name = request.body.fname;
@@ -63,4 +68,9 @@ exports.postRegister = function(request, response, next) {
 
         response.redirect('/login');
     });
+};
+
+
+exports.getContact = function(request, response) {
+    response.render('contact');
 };
