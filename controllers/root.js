@@ -19,13 +19,24 @@ function validatePassword(password) {
 }
 
 
-exports.index = function(request, response) {
-    Post.find()
-        .sort({'createdAt': 'desc'})
-        .then( (result) => {
-            response.render('index', { dataObject: result });
-        });
+exports.index = async function(request, response) {
+    var users = await User.find().select('firstName lastName');
+    var posts = await Post.find().sort({'createdAt': 'desc'});
     
+    var usersMap = {};
+    users.forEach((user, index, array) => {
+        usersMap[user._id] = user.toObject();
+    });
+
+    postsMap = {};
+    posts.forEach((post, index, array) => {
+        mappedPost = postsMap[post._id] = post.toObject();
+
+        mappedPost.firstName = usersMap[mappedPost.authorId].firstName;
+        mappedPost.lastName = usersMap[mappedPost.authorId].lastName;
+    });
+
+    response.render('index', { dataObject: postsMap});
 };
 
 

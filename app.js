@@ -8,7 +8,7 @@ var flash = require('connect-flash');
 
 var app = express();
 
-mongoose.connect("mongodb://mongo:27017/nodejsBlogdb", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+mongoose.connect("mongodb://localhost:27017/nodejsBlogdb", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
 app.set('views', './views').set('view engine', 'pug');
 app.use(express.static('public'));

@@ -1,34 +1,6 @@
-doctype html
-head
-  meta(charset='utf-8')
-  meta(http-equiv='X-UA-Compatible' content='IE=edge')
-  title Moon - Multipurpose Bootstrap 4 Template by GetTemplates.co
-  meta(name='description' content='Core HTML Project')
-  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
-  // External CSS
-  link(rel='stylesheet' href='vendor/bootstrap/bootstrap.min.css')
-  link(rel='stylesheet' href='vendor/select2/select2.min.css')
-  link(rel='stylesheet' href='vendor/owlcarousel/owl.carousel.min.css')
-  link(rel='stylesheet' href='vendor/lightcase/lightcase.css')
-  // Fonts
-  link(href='https://fonts.googleapis.com/css?family=Lato:300,400|Work+Sans:300,400,700' rel='stylesheet')
-  // CSS
-  link(rel='stylesheet' href='css/style.min.css')
-  link(rel='stylesheet' href='https://cdn.linearicons.com/free/1.0.0/icon-font.min.css')
-  link(href='https://file.myfontastic.com/7vRKgqrN3iFEnLHuqYhYuL/icons.css' rel='stylesheet')
-  // Modernizr JS for IE8 support of HTML5 elements and media queries
-  script(src='https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js')
-.boxed-page
-  nav#gtco-header-navbar.navbar.navbar-expand-lg.py-4
-    .container
-      a.navbar-brand.d-flex.align-items-center(href='/')
-        span.lnr.lnr-moon
-      button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbar-nav-header' aria-controls='navbar-nav-header' aria-expanded='false' aria-label='Toggle navigation')
-        span.lnr.lnr-menu
-      #navbar-nav-header.collapse.navbar-collapse
-        ul.navbar-nav.ml-auto
-          li.nav-item
-            a.nav-link(href='/') Back to Home
+extends layout
+
+block content
   .jumbotron.d-flex.align-items-center(style='background-image: url(img/hero-2.jpg)')
     .container.text-center
       h1.display-2.mb-4 Contact Us!
@@ -68,37 +40,3 @@ head
               | Your message was sent, thank you!
           // End of Contact Form Holder
   // End of Contact Form Section
-  footer.mastfoot.mb-3.bg-white.py-4.border-top
-    .inner.container
-      .row
-        .col-md-6.d-flex.align-items-center.justify-content-md-start.justify-content-center
-          p.mb-0
-            | &copy; 2019 Moon. All Right Reserved. Design by 
-            a(href='https://gettemplates.co' target='_blank') GetTemplates.co
-            | .
-        .col-md-6
-          nav.nav.nav-mastfoot.justify-content-md-end.justify-content-center
-            a.nav-link(href='#')
-              i.icon-facebook
-            a.nav-link(href='#')
-              i.icon-twitter
-            a.nav-link(href='#')
-              i.icon-instagram
-            a.nav-link(href='#')
-              i.icon-linkedin
-            a.nav-link(href='#')
-              i.icon-youtube
-            a.nav-link(href='#')
-              i.icon-pinterest
-// External JS
-script(type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js')
-script(src='vendor/bootstrap/popper.min.js')
-script(src='vendor/bootstrap/bootstrap.min.js')
-script(src='vendor/select2/select2.min.js ')
-script(src='vendor/owlcarousel/owl.carousel.min.js')
-script(src='vendor/isotope/isotope.min.js')
-script(src='vendor/lightcase/lightcase.js')
-script(src='vendor/waypoints/waypoint.min.js')
-script(src='vendor/countTo/jquery.countTo.js')
-// Main JS
-script(src='js/app.min.js ')
